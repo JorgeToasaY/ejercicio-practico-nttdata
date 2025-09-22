@@ -1,0 +1,382 @@
+{
+	"info": {
+		"_postman_id": "c7fbe47f-8bf5-41cc-b900-002178b89cb7",
+		"name": "Microservicios API - Cliente & Cuenta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8367193"
+	},
+	"item": [
+		{
+			"name": "Crear Cliente",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customerId\": \"CUST00024\",\n    \"name\": \"Juan Osorio\",\n    \"gender\": \"Masculino\",\n    \"age\": 20,\n    \"identification\": \"1234567003\",\n    \"address\": \"13 junio y Equinoccial\",\n    \"phone\": \"098874587\",\n    \"password\": \"1245\",\n    \"state\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Cliente",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"address\": \"Pillaro San Miguelito\",\n    \"phone\": \"0980298828\",\n    \"state\": false\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/clientes/CUST00022",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"clientes",
+						"CUST00022"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetClients",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8084/api/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetClientById",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/clientes/CUST00022",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"clientes",
+						"CUST00022"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Cliente",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8084/api/clientes/CUST0001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"clientes",
+						"CUST0001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rabbit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "guest",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "guest",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Jose Lema\",\n    \"gender\": \"Masculino\",\n    \"age\": 30,\n    \"identification\": \"1234567890\",\n    \"address\": \"Otavalo sn y principal\",\n    \"phone\": \"098254785\",\n    \"password\": \"1234\",\n    \"state\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:15672/api/queues",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "15672",
+					"path": [
+						"api",
+						"queues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Cuenta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"accountNumber\": \"585545\",\n    \"accountType\": \"Corriente\",\n    \"initialBalance\": 1000,\n    \"state\": true,\n    \"customerId\": \"CUST00022\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8085/api/cuentas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"api",
+						"cuentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Cuenta",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"state\": false\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8085/api/cuentas/478758",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"api",
+						"cuentas",
+						"478758"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAccountByAccountNumber",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8085/api/cuentas/478758",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"api",
+						"cuentas",
+						"478758"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Account",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8085/api/cuentas/478758",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"api",
+						"cuentas",
+						"478758"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrar Movimiento",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"accountNumber\": \"496825\",\n    \"movementType\": \"RETIRO\",\n    \"amount\": -540\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8085/api/movimientos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"api",
+						"movimientos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reporte de Movimientos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8085/api/movimientos/reportes?desde=2025-09-22T00:00:00&hasta=2025-09-22T23:59:59&customer=CUST00023",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"api",
+						"movimientos",
+						"reportes"
+					],
+					"query": [
+						{
+							"key": "desde",
+							"value": "2025-09-22T00:00:00"
+						},
+						{
+							"key": "hasta",
+							"value": "2025-09-22T23:59:59"
+						},
+						{
+							"key": "customer",
+							"value": "CUST00023"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
