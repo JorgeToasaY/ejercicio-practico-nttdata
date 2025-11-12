@@ -27,8 +27,8 @@ CREATE TABLE account (
     "id" SERIAL PRIMARY KEY,
     "account_number" VARCHAR(20) UNIQUE NOT NULL,
     "account_type" VARCHAR(50) NOT NULL,
-    "initial_balance" DECIMAL(12,2) NOT NULLL DEFAULT 0,
-	"available_balance" DECIMAL(12,2) NOT NULLL DEFAULT 0,
+    "initial_balance" DECIMAL(12,2) NOT NULL DEFAULT 0,
+	"available_balance" DECIMAL(12,2) NOT NULL DEFAULT 0,
     "state" BOOLEAN NOT NULL DEFAULT TRUE,
     "customer_id" VARCHAR(100) NOT NULL,
     CONSTRAINT fk_account_customer FOREIGN KEY (customer_id) REFERENCES customer(id)

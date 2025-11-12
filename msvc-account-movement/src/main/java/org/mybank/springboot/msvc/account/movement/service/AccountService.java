@@ -11,8 +11,6 @@ public interface AccountService {
     AccountResponseDTO createAccount(AccountRequestDTO request);
     AccountResponseDTO updateAccount(String accountNumber, AccountUpdateRequestDTO request);
     List<AccountResponseDTO> getAllAccounts();
-    AccountResponseDTO getAccountById(Long id);
     AccountResponseDTO findByAccountNumber(String accountNumber);
-    List<Account> findByCustomerId(String customerId);
     void updateAccountByCustomerId(String customerId, Boolean state);
 }

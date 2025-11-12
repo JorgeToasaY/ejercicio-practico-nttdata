@@ -1,5 +1,6 @@
 package org.mybank.springboot.msvc.account.movement.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import org.mybank.springboot.msvc.account.movement.dto.AccountRequestDTO;
 import org.mybank.springboot.msvc.account.movement.dto.AccountResponseDTO;
 import org.mybank.springboot.msvc.account.movement.dto.AccountUpdateRequestDTO;
@@ -8,11 +9,9 @@ import org.mybank.springboot.msvc.account.movement.exception.AccountException;
 import org.mybank.springboot.msvc.account.movement.mapper.AccountMapper;
 import org.mybank.springboot.msvc.account.movement.repository.AccountRepository;
 import org.mybank.springboot.msvc.account.movement.service.AccountService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -48,13 +47,6 @@ public class AccountServiceImpl implements AccountService {
         return accountMapper.toDtoList(accountRepository.findAll());
     }
 
-    @Override
-    public AccountResponseDTO getAccountById(Long id) {
-        Account account = accountRepository.findById(id)
-                .orElseThrow(() -> new AccountException("Account with id " + id + " not found"));
-        return accountMapper.toDto(account);
-
-    }
 
     @Override
     public AccountResponseDTO findByAccountNumber(String accountNumber) {
@@ -63,15 +55,6 @@ public class AccountServiceImpl implements AccountService {
 
         return accountMapper.toDto(account);
 
-    }
-    @Override
-    public List<Account> findByCustomerId(String customerId){
-        List<Account> listAccount = accountRepository.findByCustomerId(customerId);
-        if (listAccount.isEmpty()) {
-            throw new AccountException("No accounts found for customerId: " + customerId);
-        }
-
-        return listAccount;
     }
 
 }

@@ -13,11 +13,11 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
     @ExceptionHandler(AccountException.class)
     public ResponseEntity<ErrorResponseDTO> handleAccountException(AccountException ex, HttpServletRequest request) {
-        return buildErrorResponse(ex, HttpStatus.BAD_REQUEST, request.getRequestURI());
+        return buildErrorResponse(ex, HttpStatus.NOT_FOUND, request.getRequestURI());
     }
     @ExceptionHandler(MovementException.class)
     public ResponseEntity<ErrorResponseDTO> handleMovementException(MovementException ex, HttpServletRequest request) {
-        return buildErrorResponse(ex, HttpStatus.BAD_REQUEST, request.getRequestURI());
+        return buildErrorResponse(ex, HttpStatus.UNPROCESSABLE_ENTITY, request.getRequestURI());
     }
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDTO> handleGeneric(Exception ex, HttpServletRequest request) {

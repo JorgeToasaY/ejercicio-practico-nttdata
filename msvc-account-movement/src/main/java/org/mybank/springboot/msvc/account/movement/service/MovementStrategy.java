@@ -4,8 +4,8 @@ import org.mybank.springboot.msvc.account.movement.dto.MovementRequestDTO;
 import org.mybank.springboot.msvc.account.movement.dto.MovementResponseDTO;
 import org.mybank.springboot.msvc.account.movement.dto.MovementUpdateRequestDTO;
 
-public interface MovementService {
-    MovementResponseDTO processCreateMovement(MovementRequestDTO request);
+public interface MovementStrategy {
+    MovementResponseDTO createMovement(MovementRequestDTO request);
 
-    MovementResponseDTO processUpdateMovement(Long id, MovementUpdateRequestDTO request);
+    MovementResponseDTO updateMovement(Long id, MovementUpdateRequestDTO request);
 }

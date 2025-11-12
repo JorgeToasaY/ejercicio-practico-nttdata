@@ -6,14 +6,12 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReportResponseDTO implements Serializable {
+public class ReportMovementDTO implements Serializable {
     private String date;
-    private String customerName;
     private String accountNumber;
     private String accountType;
     private BigDecimal initialBalance;
