@@ -14,7 +14,7 @@ private final AccountService accountService;
 
     @RabbitListener(queues = "customerTopicQueue")
     public void handleCustomerUpdate(CustomerResponseDTO customer) {
-        System.out.println("Recibido: " + customer);
+        //System.out.println("Recibido: " + customer);
         accountService.updateAccountByCustomerId(customer.getCustomerId(), customer.getState());
     }
 }

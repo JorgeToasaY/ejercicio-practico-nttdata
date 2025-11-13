@@ -10,12 +10,10 @@ import org.mybank.springboot.msvc.customer.person.exception.CustomerException;
 import org.mybank.springboot.msvc.customer.person.mapper.CustomerMapper;
 import org.mybank.springboot.msvc.customer.person.repository.CustomerRepository;
 import org.mybank.springboot.msvc.customer.person.service.impl.CustomerServiceImpl;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
@@ -44,7 +42,7 @@ public class CustomerServiceTest {
         customerResponseDTO.setName("Ana");
 
         when(customerRepository.findByCustomerId(customerId)).thenReturn(Optional.of(customer));
-        when(customerMapper.toDto(customer)).thenReturn(customerResponseDTO);
+        when(customerMapper.toCustomerResponseDTO(customer)).thenReturn(customerResponseDTO);
 
         //Act
         CustomerResponseDTO result = customerService.getCustomerByCustomerId(customerId);
@@ -55,7 +53,7 @@ public class CustomerServiceTest {
         assertEquals("Ana", result.getName());
         log.info("Resultado del test -> customerId: {}, name: {}", result.getCustomerId(), result.getName());
         verify(customerRepository, times(1)).findByCustomerId(customerId);
-        verify(customerMapper, times(1)).toDto(customer);
+        verify(customerMapper, times(1)).toCustomerResponseDTO(customer);
     }
 
     @Test
@@ -71,6 +69,6 @@ public class CustomerServiceTest {
         assertEquals("Customer with id CUST0051 not found", exception.getMessage());
         log.info("Resultado del test -> customerId: {}, name: {}", result.getCustomerId(), result.getName());
         verify(customerRepository, times(1)).findByCustomerId(customerId);
-        verify(customerMapper, never()).toDto(any());
+        verify(customerMapper, never()).toCustomerResponseDTO(any());
     }
 }

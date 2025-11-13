@@ -29,10 +29,10 @@ public class CustomerServiceImpl implements CustomerService {
         if (customerRepository.existsByIdentification(customerRequestDTO.getIdentification()))
             throw  new CustomerException("Customer with identification " + customerRequestDTO.getIdentification() + " ya existe");
 
-        Customer customer = customerMapper.toEntity(customerRequestDTO);
+        Customer customer = customerMapper.toCustomer(customerRequestDTO);
         /*rabbit.convertAndSend(EXCHANGE, "customer.created",
                 new CustomerEvent(saved.getCustomerId(), saved.getNombre(), "CREATED"));*/
-        return customerMapper.toDto(customerRepository.save(customer));
+        return customerMapper.toCustomerResponseDTO(customerRepository.save(customer));
 
     }
 
@@ -40,13 +40,13 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerResponseDTO getCustomerByCustomerId(String customerId) {
         Customer customer = customerRepository.findByCustomerId(customerId)
                 .orElseThrow(() -> new CustomerException("Customer with id " + customerId + " not found"));
-        return customerMapper.toDto(customer);
+        return customerMapper.toCustomerResponseDTO(customer);
     }
 
     @Override
     public List<CustomerResponseDTO> listCustomers() {
 
-        return customerMapper.toDtoList(customerRepository.findAll());
+        return customerMapper.toCustomerResponseDTOList(customerRepository.findAll());
     }
 
     @Override
@@ -57,10 +57,10 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setState(customerUpdate.getState());
         customer.setAddress(customerUpdate.getAddress());
         customer.setPhone(customerUpdate.getPhone());
-        CustomerResponseDTO customerResponseDTO = customerMapper.toDto(customerRepository.save(customer));
+        CustomerResponseDTO customerResponseDTO = customerMapper.toCustomerResponseDTO(customerRepository.save(customer));
         // Enviar evento al otro microservicio
         if(customerStateBD.compareTo(customerUpdate.getState()) !=0) {
-            System.out.println("Enviado: " + customer);
+            //System.out.println("Enviado: " + customer);
             customerEventPublisher.sendCustomerUpdateEvent(customerResponseDTO);
         }
         return customerResponseDTO;

@@ -77,7 +77,7 @@ public class ReportServiceImpl implements ReportService {
             // Captura excepciones de acceso a red
             throw new AccountException("Error de conexión: " + e.getMessage());
         } catch (HttpClientErrorException e) {
-            // Captura errores del cliente, como 4xx
+            // Captura errores del cliente
             throw new AccountException("Error HTTP: " + e.getStatusCode());
         } catch (Exception e) {
             throw new AccountException("Exception in getCustomerName " + e);

@@ -6,3 +6,10 @@ spring:
     password: guest
   server:
     port: 8080
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+    com.nttdata: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"

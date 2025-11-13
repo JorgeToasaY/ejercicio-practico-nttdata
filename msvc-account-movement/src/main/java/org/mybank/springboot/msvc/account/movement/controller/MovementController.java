@@ -5,6 +5,7 @@ import org.mybank.springboot.msvc.account.movement.dto.MovementRequestDTO;
 import org.mybank.springboot.msvc.account.movement.dto.MovementResponseDTO;
 import org.mybank.springboot.msvc.account.movement.dto.MovementUpdateRequestDTO;
 import org.mybank.springboot.msvc.account.movement.dto.ReportResponseDTO;
+import org.mybank.springboot.msvc.account.movement.exception.MovementException;
 import org.mybank.springboot.msvc.account.movement.service.MovementService;
 import org.mybank.springboot.msvc.account.movement.service.ReportService;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,6 +27,7 @@ public class MovementController {
 
     @PostMapping
     public ResponseEntity<MovementResponseDTO> create(@RequestBody @Validated MovementRequestDTO request) {
+        System.out.println("➡️ Entrando al método processCreateMovement con tipo: ");
         return new ResponseEntity<>(movementService.processCreateMovement(request), HttpStatus.CREATED);
     }
 

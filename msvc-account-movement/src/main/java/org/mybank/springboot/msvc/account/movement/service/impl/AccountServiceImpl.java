@@ -21,10 +21,10 @@ public class AccountServiceImpl implements AccountService {
     private final AccountMapper accountMapper;
     @Override
     public AccountResponseDTO createAccount(AccountRequestDTO request) {
-        Account account = accountMapper.toEntity(request);
+        Account account = accountMapper.toAccount(request);
         account.setAvailableBalance(request.getInitialBalance());
         account = accountRepository.save(account);
-        return  accountMapper.toDto(account);
+        return  accountMapper.toAccountResponseDTO(account);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class AccountServiceImpl implements AccountService {
         Account account = accountRepository.findByAccountNumber(accountNumber)
                 .orElseThrow(() -> new AccountException("Account with accountNumber " + accountNumber + " not found"));
         account.setState(request.getState());
-        return accountMapper.toDto(accountRepository.save(account));
+        return accountMapper.toAccountResponseDTO(accountRepository.save(account));
     }
     @Override
     public void updateAccountByCustomerId(String customerId, Boolean state) {
@@ -44,7 +44,7 @@ public class AccountServiceImpl implements AccountService {
     }
     @Override
     public List<AccountResponseDTO> getAllAccounts() {
-        return accountMapper.toDtoList(accountRepository.findAll());
+        return accountMapper.toAccountResponseDTOList(accountRepository.findAll());
     }
 
 
@@ -53,7 +53,7 @@ public class AccountServiceImpl implements AccountService {
         Account account = accountRepository.findByAccountNumber(accountNumber)
                 .orElseThrow(() -> new AccountException("Account with accountNumber " + accountNumber + " not found"));
 
-        return accountMapper.toDto(account);
+        return accountMapper.toAccountResponseDTO(account);
 
     }
 

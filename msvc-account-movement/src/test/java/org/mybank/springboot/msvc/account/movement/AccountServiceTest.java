@@ -57,9 +57,9 @@ class AccountServiceTest {
                 .customerId("CUST000013")
                 .build();
 
-        Mockito.when(accountMapper.toEntity(request)).thenReturn(entity);
+        Mockito.when(accountMapper.toAccount(request)).thenReturn(entity);
         Mockito.when(accountRepository.save(entity)).thenReturn(entity);
-        Mockito.when(accountMapper.toDto(entity)).thenReturn(response);
+        Mockito.when(accountMapper.toAccountResponseDTO(entity)).thenReturn(response);
 
         // Act
         AccountResponseDTO result = accountService.createAccount(request);
