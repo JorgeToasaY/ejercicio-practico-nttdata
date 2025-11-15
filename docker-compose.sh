@@ -14,5 +14,6 @@ if [ $? -ne 0 ]; then
 fi
 cd ..
 
-docker-compose build
+docker-compose down
+docker-compose build --no-cache
 docker-compose up

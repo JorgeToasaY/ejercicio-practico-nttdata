@@ -32,14 +32,10 @@ public class MovementServiceImpl implements MovementService {
     }
 
     public MovementResponseDTO processCreateMovement(MovementRequestDTO movement) {
-        System.out.println("➡️ Entrando al método processCreateMovement con tipo: " + movement.getMovementType());
         String type = movement.getMovementType().toLowerCase(); // "deposit" o "withdraw"
-        System.out.println("Tipo de movimiento: " + type);
         log.info("Log del tipo de movimiento {}", type);
         Gson gson = new Gson();
-        String json = gson.toJson(strategies.keySet());
-        System.out.println("Estrategias cargadas: " + json);
-        log.info("Log de las estrategias {}", json);
+        log.info("Log de las estrategias {}", gson.toJson(strategies.keySet()));
         if (!strategies.containsKey(type)) {
             System.out.println("Ingreso");
             throw new MovementException("Tipo de movimiento inválido: " + type);

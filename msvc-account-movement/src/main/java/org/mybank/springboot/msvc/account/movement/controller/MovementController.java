@@ -27,7 +27,6 @@ public class MovementController {
 
     @PostMapping
     public ResponseEntity<MovementResponseDTO> create(@RequestBody @Validated MovementRequestDTO request) {
-        System.out.println("➡️ Entrando al método processCreateMovement con tipo: ");
         return new ResponseEntity<>(movementService.processCreateMovement(request), HttpStatus.CREATED);
     }
 
